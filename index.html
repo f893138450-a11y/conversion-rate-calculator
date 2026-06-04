@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>转化率快速计算器</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="app-shell">
+    <section class="hero-card">
+      <div class="hero-copy">
+        <p class="eyebrow">Conversion Rate Calculator</p>
+        <h1>转化率快速计算器</h1>
+        <p class="hero-text">快速计算、即时留痕、本地保存，方便你对比多组投放与转化数据。</p>
+      </div>
+
+      <form id="calculator-form" class="calculator-form" novalidate>
+        <label class="field">
+          <span class="field-label">分子 (detailH0)</span>
+          <input
+            id="numerator"
+            name="numerator"
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="any"
+            placeholder="请输入分子数据"
+            autocomplete="off"
+          >
+          <span id="numerator-error" class="field-error" aria-live="polite"></span>
+        </label>
+
+        <label class="field">
+          <span class="field-label">分母 (detailH1)</span>
+          <input
+            id="denominator"
+            name="denominator"
+            type="number"
+            inputmode="decimal"
+            min="0"
+            step="any"
+            placeholder="请输入分母数据"
+            autocomplete="off"
+          >
+          <span id="denominator-error" class="field-error" aria-live="polite"></span>
+        </label>
+
+        <div class="action-row">
+          <button id="calculate-btn" class="primary-btn" type="submit" disabled>开始计算</button>
+          <button id="reset-btn" class="secondary-btn" type="button">一键清空</button>
+        </div>
+      </form>
+
+      <section class="result-board" aria-live="polite" aria-atomic="true">
+        <p class="result-label">当前转化率</p>
+        <strong id="result-value" class="result-value">--</strong>
+        <p id="result-hint" class="result-hint">输入分子与分母后，点击“开始计算”查看结果。</p>
+      </section>
+    </section>
+
+    <section class="history-card">
+      <header class="history-header">
+        <div>
+          <p class="section-kicker">History</p>
+          <h2 id="history-title">历史计算记录（共 0 条）</h2>
+        </div>
+        <button id="clear-history-btn" class="icon-btn" type="button" aria-label="清空历史">🗑</button>
+      </header>
+
+      <p class="history-tip">点击卡片可回填数据，点击备注可编辑标签，左滑或长按可删除单条记录。</p>
+
+      <div id="empty-state" class="empty-state">
+        <p>还没有历史记录，先完成一次计算吧。</p>
+      </div>
+
+      <div id="history-list" class="history-list" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <template id="history-item-template">
+    <article class="history-item">
+      <button class="delete-swipe-btn" type="button">删除</button>
+      <div class="history-content">
+        <div class="history-top">
+          <span class="history-time"></span>
+          <span class="history-rate"></span>
+        </div>
+        <p class="history-formula"></p>
+        <button class="history-note" type="button"></button>
+      </div>
+    </article>
+  </template>
+
+  <script src="./app.js"></script>
+</body>
+</html>
